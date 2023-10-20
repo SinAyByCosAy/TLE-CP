@@ -22,3 +22,5 @@ public class DiceCombinationsTabularDP {
         System.out.println(dp[n]);
     }
 }
+//TC: O(N)
+//SC: O(N)
