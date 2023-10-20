@@ -8,11 +8,11 @@ public class DiceCombinations {
     public static void main(String args[]){
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        int dp[] = new int [n+1];
+        long dp[] = new long[n+1];
         for(int i=0;i<=n;i++){
             dp[i] = -1;
         }
-        System.out.println(ways(n, dp));
+        System.out.println((int)ways(n, dp));
     }
 //    static int ways(int n){
 //        if(n==0||n==1)
@@ -23,7 +23,7 @@ public class DiceCombinations {
 //        }
 //        return count;
 //    }
-    static int ways(int n, int[] dp){
+    static long ways(int n, long[] dp){
         if(n==0||n==1)
             return 1;
         if(dp[n]!=-1)
@@ -32,7 +32,7 @@ public class DiceCombinations {
         for(int i=1;i<=6 & n-i>=0;i++){
             count = (count + ways(n-i, dp)) % m;
         }
-        dp[n] = (int)(count % m);
+        dp[n] = count;
         return dp[n];
     }
 }
