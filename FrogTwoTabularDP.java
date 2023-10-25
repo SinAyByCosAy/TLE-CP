@@ -17,10 +17,10 @@ public class FrogTwoTabularDP {
         }
         dp[0] = 0;
         for(int i=0;i<n;i++){
-            for(int j=i+1;j<=i+k;j++){
-                if(j>=n)
+            for(int j=i-1;j>=i-k;j--){
+                if(j<0)
                     break;
-                dp[j] = Math.min(dp[j], Math.abs(h[j] - h[i]) + dp[i]);
+                dp[i] = Math.min(dp[i], Math.abs(h[i] - h[j]) + dp[j]);
             }
         }
         System.out.println(dp[n-1]);
