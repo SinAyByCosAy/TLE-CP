@@ -15,6 +15,18 @@ public class BookShopTabularDP {
         for(int i=1;i<=n;i++){
             s[i] = sc.nextInt();
         }
-        int[][]dp = new int[n+1][x+1];
+        int flag = 1;
+        int[][]dp = new int[2][x+1];
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=x;j++){
+                int ans = 0;
+                if(j - h[i] >= 0)
+                    ans = s[i] + dp[flag^1][j-h[i]];
+                ans = Math.max(ans, dp[flag^1][j]);
+                dp[flag][j] = ans;
+            }
+            flag ^= 1;
+        }
+        System.out.println(dp[flag^1][x]);
     }
 }
