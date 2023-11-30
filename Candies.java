@@ -14,30 +14,27 @@ public class Candies {
         for(int i=1;i<=n;i++){
             a[i] = sc.nextInt();
         }
-        int dp[][] = new int[n+1][k+1];
-        long PSum[][] = new long[n+1][k+1];
+        int dp[] = new int[k+1];
+        long PSum[][] = new long[2][k+1];
+        int flag = 0;
         for(int j=0;j<=a[1];j++)
-            dp[1][j] = 1;
-        PSum[1][0] = dp[1][0];
+            dp[j] = 1;
+        PSum[flag][0] = 1;
         for(int j=1;j<=k;j++)
-            PSum[1][j] = PSum[1][j-1] + dp[1][j];
+            PSum[flag][j] = PSum[flag][j-1] + dp[j];
         for(int i=2;i<=n;i++){
             for(int j=0;j<=k;j++){
                 long sum = 0;
                 int idx = j - a[i];
                 if(idx <= 0)
-                    sum = PSum[i-1][j];
+                    sum = PSum[flag][j];
                 else
-                    sum = PSum[i-1][j] - PSum[i-1][idx-1];
-                dp[i][j] = (int)sum;
-                PSum[i][j] = (j == 0) ? dp[i][j] : (PSum[i][j-1] + dp[i][j])%m;
+                    sum = (PSum[flag][j] + m - PSum[flag][idx-1]) % m;
+                dp[j] = (int)sum;
+                PSum[flag^1][j] = (j == 0) ? dp[j] : (PSum[flag^1][j-1] + dp[j])%m;
             }
+            flag ^= 1;
         }
-        System.out.println(dp[n][k]);
-//        for(int[] row: dp)
-//            System.out.println(Arrays.toString(row));
-//        System.out.println();
-//        for(int[] row: PSum)
-//            System.out.println(Arrays.toString(row));
+        System.out.println(dp[k]);
     }
 }
