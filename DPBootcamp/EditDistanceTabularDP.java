@@ -1,4 +1,4 @@
-package DPBootcamp;
+package DPBootcamp.DPBootcamp;
 
 import java.util.Arrays;
 import java.util.Scanner;

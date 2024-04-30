@@ -1,5 +1,5 @@
 //https://leetcode.com/problems/longest-increasing-subsequence/description/
-package DPBootcamp;
+package DPBootcamp.DPBootcamp;
 
 import java.util.Arrays;
 import java.util.Scanner;

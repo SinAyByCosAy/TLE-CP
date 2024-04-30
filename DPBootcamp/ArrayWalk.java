@@ -1,5 +1,5 @@
 //https://codeforces.com/problemset/problem/1389/B
-package DPBootcamp;
+package DPBootcamp.DPBootcamp;
 
 import java.util.Arrays;
 import java.util.Scanner;

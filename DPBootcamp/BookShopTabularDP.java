@@ -1,5 +1,5 @@
 //https://cses.fi/problemset/task/1158
-package DPBootcamp;
+package DPBootcamp.DPBootcamp;
 
 import java.util.Scanner;
 

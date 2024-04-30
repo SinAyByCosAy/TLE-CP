@@ -1,5 +1,5 @@
 //https://atcoder.jp/contests/dp/tasks/dp_m
-package DPBootcamp;
+package DPBootcamp.DPBootcamp;
 
 import java.util.Arrays;
 import java.util.Scanner;

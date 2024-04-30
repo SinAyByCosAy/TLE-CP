@@ -1,5 +1,5 @@
 //https://codeforces.com/problemset/problem/1498/C
-package DPBootcamp;
+package DPBootcamp.DPBootcamp;
 
 import java.util.Scanner;
 
