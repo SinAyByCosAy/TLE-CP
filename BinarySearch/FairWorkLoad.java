@@ -1,3 +1,17 @@
+/*
+1200 rated
+Given an array of workloads, split it among "k" (user input) workers, such that maximum work that any worker has to do is minimized.
+Order of the workloads can't be changed. Array can be unsorted.
+Return the max minimised workload.
+Ex-
+10,20,30,40,50,60,70,80,90
+K=3
+Solution:
+Worker1 = 10,20,30,40,50 = 150
+Worker2 = 60,70 = 130
+Worker3 = 80,90 = 170
+Answer - 170
+ */
 package DPBootcamp.BinarySearch;
 
 import java.util.Scanner;
