@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class SqrtDecimal {
     public static void main(String args[]){
         Scanner sc = new Scanner(System.in);
-        double x = sc.nextInt();
+        long x = sc.nextInt();
         double precision = 1e-7;
         double start = 1, end = x, mid;
         double ans = 1;
