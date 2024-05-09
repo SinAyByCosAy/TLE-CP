@@ -9,10 +9,8 @@ public class Ropes {
         int n = sc.nextInt();
         int k = sc.nextInt();
         int arr[] = new int[n];
-        long min = Integer.MAX_VALUE;
         for(int i=0; i<n; i++) {
             arr[i] = sc.nextInt();
-            min = Math.min(arr[i], min);
         }
 
         double precision = 1e-7;
