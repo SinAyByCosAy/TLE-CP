@@ -1,5 +1,5 @@
 //https://cses.fi/problemset/task/2422/
-//package DPBootcamp.BinarySearch;
+package DPBootcamp.BinarySearch;
 
 import java.util.Scanner;
 
