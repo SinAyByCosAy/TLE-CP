@@ -38,19 +38,14 @@ public class MinimumDaysForBouquet {
         int n = bloomDay.length;
         int eleCount = 0;//elements in current window
         int bouquetCount = 0;//buquets made
-        Deque<Integer> dq = new ArrayDeque<>();
         for(int i=0;i<n;i++){
-            while(!dq.isEmpty() && dq.peek() <= i-k) dq.poll();
-            while(!dq.isEmpty() && bloomDay[dq.peekLast()] <= bloomDay[i]) dq.pollLast();
-            dq.offer(i);
-            eleCount++;
-            if(eleCount == k){
-                if(bloomDay[dq.peek()] <= target){
-                    bouquetCount++;
-                    dq.clear();
+            if(bloomDay[i] > target){
+                eleCount = 0;
+            }else{
+                eleCount ++;
+                if(eleCount == k){
+                    bouquetCount ++;
                     eleCount = 0;
-                }else{
-                    eleCount--;
                 }
             }
         }
