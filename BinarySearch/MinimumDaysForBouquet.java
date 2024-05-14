@@ -39,13 +39,13 @@ public class MinimumDaysForBouquet {
         int eleCount = 0;//elements in current window
         int bouquetCount = 0;//buquets made
         for(int i=0;i<n;i++){
-            if(bloomDay[i] > target){
-                eleCount = 0;
-            }else{
+            if(bloomDay[i] > target){//current flower can't be picked
+                eleCount = 0;//resetting the window
+            }else{//current flower can be picked
                 eleCount ++;
-                if(eleCount == k){
+                if(eleCount == k){//once we have k flowers, we have a bouquet
                     bouquetCount ++;
-                    eleCount = 0;
+                    eleCount = 0;//resetting the window
                 }
             }
         }
