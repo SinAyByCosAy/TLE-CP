@@ -39,7 +39,7 @@ public class AverageAndMedian {
         int n = arr.length;
         while(start <= end){
             int mid = (start + end) / 2;
-            double[] temp = new double[n];
+            double[] temp = new double[n];//since we have to use the same getMaxSum fn., we have to use a double array
             for(int idx = 0; idx < n; idx++){
                 if(arr[idx] >= mid) temp[idx] = 1;
                 else temp[idx] = -1;
