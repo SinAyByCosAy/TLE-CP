@@ -18,7 +18,7 @@ class Interactor{//mimicking online judge
     char make_query(int x){//online judge interaction with our queries
         if(++query_count >  max_queries){
             System.out.println("max query limit reached "+max_queries);
-            exit(0);
+            exit(1);
         }
         char response;
         if(x == hidden_answer) response = '=';
@@ -31,7 +31,7 @@ class Interactor{//mimicking online judge
         if(x == hidden_answer) System.out.println("Passed for "+ hidden_answer);
         else {
             System.out.println("Failed for "+hidden_answer);
-            exit(0);
+            exit(1);
         }
     }
 }
