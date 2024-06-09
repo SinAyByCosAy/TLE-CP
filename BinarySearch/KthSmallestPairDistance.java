@@ -28,8 +28,7 @@ public class KthSmallestPairDistance {
                 while(j<n && nums[j] - nums[i] <= mid) {
                     j++;
                 }
-                j--;
-                count += (j-i);
+                count += (j-1-i);
             }
             if(count >= k){
                 ans = mid;
