@@ -8,11 +8,9 @@ public class Interview {
         int t = sc.nextInt();
         while(t-- > 0){
             int n = sc.nextInt();
-            int[] weights = new int[n+1];
             int[] ps = new int[n+1];
             for(int i=1;i<=n;i++){
-                weights[i] = sc.nextInt();
-                ps[i] = weights[i] + ps[i-1];
+                ps[i] = sc.nextInt() + ps[i-1];
             }
             int start = 1, end = n;
             int ans = n;
@@ -26,7 +24,8 @@ public class Interview {
                                // important : we narrow down the ans to one element and store it, but in case like
                                //[1,2,3,4,5], hidden element : 3, query- ? 3 1 2 3, expected : 6, result : 7
                                //acc to our algo, we search ? 1 1 and ? 1 2 and both are equal to their expected value,
-                               //our result was at idx : 3, which was stored when we got total as 7 and not 6.
+                               //our result was at idx : 3, but we never narrowed down to it, and if we never stored "mid" as "ans",
+                               //we would never get it
                     end = mid - 1;
                 }else{
                     start = mid + 1;
