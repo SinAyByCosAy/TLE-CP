@@ -15,7 +15,7 @@ public class CountDistinctInWindowOfSizeK {
         HashMap<Integer, Integer> hm = new HashMap<>();
         for(int i = 0; i < n; i++){
             //add value by increasing it's count
-            hm.put(arr[i], hm.getOrDefault(hm.get(arr[i]), 0) + 1);
+            hm.put(arr[i], hm.getOrDefault(arr[i], 0) + 1);
 
             //reduce the count of the element at the start of the window
             if(i >= k){
