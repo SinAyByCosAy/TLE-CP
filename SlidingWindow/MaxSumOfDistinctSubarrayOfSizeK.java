@@ -59,7 +59,7 @@ public class MaxSumOfDistinctSubarrayOfSizeK {
                 hs.remove(nums[l]);
                 l++;
             }
-            else if(hs.size() < k && !hs.contains(nums[r])){
+            else{
                 sum += nums[r];
                 hs.add(nums[r]);
                 r++;
