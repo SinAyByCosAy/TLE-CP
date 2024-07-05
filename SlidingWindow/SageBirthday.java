@@ -15,33 +15,25 @@ public class SageBirthday {
         Arrays.sort(arr);
         int k = getPossibleGroups(arr);
         int[] result = new int[n];
-        int i = 0, j = k;
-        int lastPicked = -1;
+        int i = 0, j = n - (k + 1);//first index of the (k+1) largest elements
         int idx = 0;
-        while(i < k){//logic to reorder the array, going over the valley elments
-            if(arr[i] < arr[j]){//since array is sorted, if arr[i] < arr[j] then arr[i] is also < arr[j+1]
-                if(lastPicked != j){//we need to pick the left side of the valley
-                    result[idx++] = arr[j];
-                }
-                result[idx++] = arr[i];//valley element
-                result[idx++] = arr[j + 1];//right side of the valley
-                i++;//next valley element
-                lastPicked = j + 1;
-            }else{
-                if(lastPicked != j){//if this single element hasn't been picked, we need to add it
-                    result[idx++] = arr[j];
-                    lastPicked = j;
-                }
+        while (i < k) {//logic to reorder the array, going over the valley elements
+            if (i == 0) {
+                result[idx++] = arr[j];
             }
+            result[idx++] = arr[i];
+            result[idx++] = arr[j + 1];
+            i++;
             j++;
         }
-        j = lastPicked + 1;
-        while(j < n){//add remaining elements
-            result[idx++] = arr[j++];
+        i = k;
+        j = (k == 0) ? n-1 : n - (k + 2);//last index of leftover elements
+        while (i <= j) {//add remaining elements
+            result[idx++] = arr[i++];
         }
         System.out.println(k);
-        for(int ele : result)
-            System.out.print(ele+" ");
+        for (int ele : result)
+            System.out.print(ele + " ");
     }
     public static int getPossibleGroups(int[] arr){//BS on answer
         int n = arr.length;
@@ -58,21 +50,18 @@ public class SageBirthday {
         }
         return ans;
     }
-    public static boolean check(int[] arr, int x){
+    public static boolean check(int[] arr, int k){
         int n = arr.length;
-        if(n - x < x + 1)//base condition for x to be possible
+        if(n - k < k + 1)//base condition for x to be possible
             return false;
-        int i = 0, j = x;
-        int count = 0;
-        while(j < n - 1){
-            if(arr[i] < arr[j]){//found left and right elements @ idx: j, j+1
-                count ++;
-                i++;
-                j++;
-            }else{//we try larger elements
-                j++;
+        int i = 0, j = n - (k + 1);
+        while(i < k){
+            if(arr[i] >= arr[j]){//not possible
+                break;
             }
+            i++;
+            j++;
         }
-        return count >= x;
+        return i == k;
     }
 }
