@@ -1,8 +1,9 @@
+//https://leetcode.com/problems/minimum-operations-to-make-binary-array-elements-equal-to-one-ii/
 package DPBootcamp.SlidingWindow;
 
 import java.util.Scanner;
 
-public class MinOpsToMakeBinaryArray1 {
+public class MinOpsToMakeBinaryArrayOneii {
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
@@ -13,17 +14,13 @@ public class MinOpsToMakeBinaryArray1 {
         System.out.println(minOperations(arr));
     }
     public static int minOperations(int[] nums) {
-        int n = nums.length;
         int count = 0;
-        for(int i = 0; i < n ; i++){
-            if(i > n - 3 && nums[i] == 0)
-                return -1;
-
-            if(nums[i] == 0){
-                nums[i+1] ^= 1;
-                nums[i+2] ^= 1;
+        int n = nums.length;
+        for(int i = 0; i < n; i++){
+            if(nums[i] == 0 && count % 2 == 0)
+                count++;//no need to actually flip it, count tells us that info
+            else if(nums[i] == 1 && count % 2 == 1)
                 count++;
-            }
         }
         return count;
     }
