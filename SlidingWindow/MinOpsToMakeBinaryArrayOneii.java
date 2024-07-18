@@ -17,9 +17,7 @@ public class MinOpsToMakeBinaryArrayOneii {
         int count = 0;
         int n = nums.length;
         for(int i = 0; i < n; i++){
-            if(nums[i] == 0 && count % 2 == 0)
-                count++;//no need to actually flip it, count tells us that info
-            else if(nums[i] == 1 && count % 2 == 1)
+            if(nums[i] == count % 2)
                 count++;
         }
         return count;
