@@ -19,7 +19,7 @@ public class LengthOfLongestSAWIthAtmostKDistinctEle {
         int i = 0, j = 0;
         HashMap<Integer, Integer> hm = new HashMap<>();
         while(j < n){// looking from right end's POV
-            hm.put(arr[j], hm.getOrDefault(arr[j], 0) + 1);//adding new element to the SA
+            hm.put(arr[j], hm.getOrDefault(arr[j], 0) + 1);//adding new element to the SA, right pointer moved forward
             while(i <= j && hm.size() > k){//shifting the left end forward till #distinct ele > k
                 hm.put(arr[i], hm.get(arr[i]) - 1);
                 if(hm.get(arr[i]) == 0)

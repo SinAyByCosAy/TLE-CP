@@ -18,7 +18,7 @@ public class LengthOfLongestSAWithSumAtmostK {
         int i = 0, j = 0;
         long sum = 0;
         while(j < n){//looking from right end's POV
-            sum += arr[j]; //adding new term to SA
+            sum += arr[j]; //adding new term to SA, right pointer moved forward
             while(i <= j && sum > k){ //if sum exceeds the limit, we decrease SA by removing left most element and shifting left forward
                 sum -= arr[i];
                 i++;
