@@ -1,3 +1,4 @@
+//https://codeforces.com/edu/course/2/lesson/9/3/practice/contest/307094/problem/B
 package DPBootcamp.TwoPointers;
 
 import java.util.Scanner;
