@@ -1,8 +1,6 @@
 package DPBootcamp.Templates;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class ImpFunctions {
 
@@ -21,5 +19,11 @@ public class ImpFunctions {
 
     public static void sortArray(Integer[] arr){
         Arrays.sort(arr, (a, b) -> Integer.compare(a, b)); //requires an object type
+    }
+
+    public static void hashMapIterator(HashMap<Integer, Integer> hm){
+        for (Map.Entry<Integer, Integer> ele : hm.entrySet()) {
+            System.out.println(ele.getKey() + " " + ele.getValue());
+        }
     }
 }
