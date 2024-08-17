@@ -21,8 +21,8 @@ public class TheyAreEverywhere {
         while (j < n) {
             char ch = s.charAt(j);
             hm.put(ch, hm.getOrDefault(ch, 0) + 1);
-            while(i <= j && hm.size() == target && hm.get(s.charAt(i)) > 1){
-                //we are at a good segment and we can remove the extra element at the start of the window to make it smaller
+            while(i <= j && hm.get(s.charAt(i)) > 1){
+                //in a segment we only need 1 of each kind, so we can remove the extra one in the end
                 char x = s.charAt(i);
                 hm.put(x, hm.get(x) - 1);
                 i++;
