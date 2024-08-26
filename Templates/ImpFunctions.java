@@ -45,4 +45,29 @@ public class ImpFunctions {
     public static int divide(int x, int y){
         return mul(x, power(y, (mod - 2)));
     }
+
+    public static long recurAPowerN(int a, int n){
+        if(n == 0)
+            return 1;
+
+        long res = recurAPowerN(a, n / 2);
+        if(n % 2 == 1)
+            res *= 1l * res * a;
+        else
+            res *= 1l * res;
+
+        return res;
+    }
+
+    public static long vanillaAPowerN(int a, int n){
+        long res = 1;
+        while(n >  0){
+            if((n & 1) == 1){
+                res *= 1l * a;
+            }
+            a *= a;
+            n >>= 1;
+        }
+        return res;
+    }
 }
