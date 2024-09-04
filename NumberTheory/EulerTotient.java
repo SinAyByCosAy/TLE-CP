@@ -33,8 +33,8 @@ public class EulerTotient {
             phiValues[i] = i;
 
         for(int i = 2; i <= n; i++){
-            if(phiValues[i] == i){
-                for(int j = i; j <= n; j += i)
+            if(phiValues[i] == i){//found a prime
+                for(int j = i; j <= n; j += i)//contribution to all the multiples of prime
                     phiValues[j] -= phiValues[j] / i;
             }
         }
