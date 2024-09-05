@@ -9,10 +9,12 @@ public class ImpFunctions {
         return (int) ((Math.random() * (b - a)) + a);
     }
 
+    //gcd
     public static int gcd(int a, int b){
         return b == 0 ? a : gcd(b, a % b);
     }
 
+    //comparator
     public static void sortList(List<Integer> arr){
         Collections.sort(arr, (a, b) -> Integer.compare(a, b));
     }
@@ -21,11 +23,13 @@ public class ImpFunctions {
         Arrays.sort(arr, (a, b) -> Integer.compare(a, b)); //requires an object type
     }
 
+    //hashmap iterator
     public static void hashMapIterator(HashMap<Integer, Integer> hm){
         for (Map.Entry<Integer, Integer> ele : hm.entrySet()) {
             System.out.println(ele.getKey() + " " + ele.getValue());
         }
     }
+
 
     //Modulo division when mod value is prime
     //(x / y) % mod = [x * y ^ (mod - 2)] % mod
@@ -46,6 +50,8 @@ public class ImpFunctions {
         return mul(x, power(y, (mod - 2)));
     }
 
+
+    //A^N
     public static long recurAPowerN(int a, int n){
         if(n == 0)
             return 1;
@@ -69,5 +75,38 @@ public class ImpFunctions {
             n >>= 1;
         }
         return res;
+    }
+
+
+    //Euler totient value
+    public static int phi(int n){//can be also done using SPF
+        //TC: O(sqrt(N))
+        int result = n;
+        for(int i = 2; i * i <= n; i++){
+            if(n % i == 0){
+                result -= result / i;
+                while(n % i == 0)
+                    n /= i;
+            }
+        }
+        if(n > 1)
+            result -= result / n;
+
+        return result;
+    }
+
+    public static int[] phiOneToN(int n){
+        //similar to sieve or SPF construction logic, TC: O(N * log(logN)) ~ O(N)
+        int[] phiValues = new int[n + 1];
+        for(int i = 1; i <= n; i++)
+            phiValues[i] = i;
+
+        for(int i = 2; i <= n; i++){
+            if(phiValues[i] == i){//found a prime
+                for(int j = i; j <= n; j += i)//contribution to all the multiples of prime
+                    phiValues[j] -= phiValues[j] / i;
+            }
+        }
+        return phiValues;
     }
 }
