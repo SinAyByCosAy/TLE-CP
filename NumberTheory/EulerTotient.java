@@ -27,7 +27,7 @@ public class EulerTotient {
     }
 
     public static int[] phiOneToN(int n){
-        //similar to sieve or SPF construction logic, TC: << O(NlogN)
+        //similar to sieve or SPF construction logic, TC: O(N * log(logN)) ~ O(N)
         int[] phiValues = new int[n + 1];
         for(int i = 1; i <= n; i++)
             phiValues[i] = i;
