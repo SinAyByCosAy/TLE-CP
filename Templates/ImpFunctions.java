@@ -51,7 +51,7 @@ public class ImpFunctions {
     }
 
 
-    //A^N
+    //A^N, Binary Exponentiation
     public static long recurAPowerN(int a, int n){
         if(n == 0)
             return 1;
@@ -61,7 +61,7 @@ public class ImpFunctions {
             res *= 1l * res * a;
         else
             res *= 1l * res;
-
+        //res %= mod
         return res;
     }
 
@@ -69,9 +69,9 @@ public class ImpFunctions {
         long res = 1;
         while(n >  0){
             if((n & 1) == 1){
-                res *= 1l * a;
+                res *= 1l * a; //res %= mod
             }
-            a *= a;
+            a *= a; //a %= mod
             n >>= 1;
         }
         return res;

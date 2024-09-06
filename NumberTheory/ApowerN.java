@@ -2,6 +2,7 @@ package DPBootcamp.NumberTheory;
 
 import java.util.Scanner;
 
+//Binary Exponentiation
 public class ApowerN {
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
