@@ -31,4 +31,4 @@ public class RowGCD {
     }
 }
 
-//TC: O(N + M*log(A))
+//TC: O((N + M) * log(A))
