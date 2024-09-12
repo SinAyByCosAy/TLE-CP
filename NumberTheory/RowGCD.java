@@ -19,10 +19,10 @@ public class RowGCD {
         //gcd(a[0] + b[j],...,a[n-1] + b[j]) = gcd(a[0]+b[j], |a[1]-a[0]|,...,|a[n]-a[0]|)
         //except a[0]+b[j], everything can be pre-computed
         long calculatedGCD = 0;
-        for(int i = 1; i < n; i++)//O(N)
+        for(int i = 1; i < n; i++)//O(N * logA)
             calculatedGCD = gcd(calculatedGCD, Math.abs(a[i] - a[i - 1]));
 
-        for(long val : b){//O(M)
+        for(long val : b){//O(M * logA)
             System.out.print(gcd(a[0] + val, calculatedGCD) + " ");
         }
     }
