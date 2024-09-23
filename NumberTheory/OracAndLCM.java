@@ -1,3 +1,4 @@
+//https://codeforces.com/problemset/problem/1349/A
 package DPBootcamp.NumberTheory;
 
 import java.util.ArrayList;
