@@ -72,3 +72,4 @@ public class OracAndLCM {
         return res;
     }
 }
+//TC:O(NlogN)
