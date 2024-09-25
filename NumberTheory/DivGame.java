@@ -12,7 +12,7 @@ public class DivGame {
             if(n % i == 0){//found a prime factor
                 long target = 1;//targets: 1 + 2 + 3 .... till all powers are covered
                 long count = 0;
-                while(n % i == 0){
+                while(n % i == 0){//Some constant C ops
                     n /= i;
                     count++;
                     if(count == target){
@@ -27,4 +27,4 @@ public class DivGame {
         System.out.println(ans);
     }
 }
-//TC: O(sqrt(N) * log N)
+//TC: O(sqrt(N) * C)
