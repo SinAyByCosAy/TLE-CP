@@ -68,6 +68,29 @@ public class ImpFunctions {
     }
 
 
+    //Binomial Coefficient under mod
+    public static int modNCR(int n, int r, int mod){
+        int[] factorial = getFactorial((int)1e6, mod); //pre-computed factorials
+        int[] inverseFactorial = getInverseFactorial((int)1e6, factorial, mod); //pre-computed inverse factorials
+        return modMul(modMul(factorial[n], inverseFactorial[r], mod), inverseFactorial[n - r], mod);
+    }
+    public static int[] getFactorial(int limit, int mod){
+        int[] factorial = new int[limit + 1];
+        factorial[0] = 1;
+        for(int i = 1; i <= limit; i++){ //O(N)
+            factorial[i] = modMul(factorial[i - 1], i, mod);
+        }
+        return factorial;
+    }
+    public static int[] getInverseFactorial(int limit, int[] factorial, int mod){
+        int[] inverseFactorial = new int[limit + 1];
+        inverseFactorial[limit] = mmInvPrime(factorial[limit], mod); //O(log m)
+        for(int i = limit - 1; i >= 0; i--){ //O(N)
+            inverseFactorial[i] = modMul(inverseFactorial[i + 1], i + 1, mod);
+        }
+        return inverseFactorial;
+    }
+
 
     //Euler totient value
     public static int phi(int n){//can be also done using SPF
