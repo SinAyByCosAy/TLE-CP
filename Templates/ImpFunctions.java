@@ -31,41 +31,8 @@ public class ImpFunctions {
     }
 
 
-    //Modulo division when mod value is prime
-    //(x / y) % mod = [x * y ^ (mod - 2)] % mod
-    static int mod = 1000 * 1000 * 1000 + 7;
-    public static int mul(int x, int y){
-        return (int)((x * 1l * y) % mod);
-    }
-    public static int power(int x, int y){
-        int ans = 1;
-        while(y > 0){
-            if((y & 1) == 1) ans = mul(ans, x);
-            x = mul(x, x);
-            y = y >> 1;
-        }
-        return ans;
-    }
-    public static int divide(int x, int y){
-        return mul(x, power(y, (mod - 2)));
-    }
-
-
     //A^N, Binary Exponentiation
-    public static long recurAPowerN(int a, int n){
-        if(n == 0)
-            return 1;
-
-        long res = recurAPowerN(a, n / 2);
-        if(n % 2 == 1)
-            res *= 1l * res * a;
-        else
-            res *= 1l * res;
-        //res %= mod
-        return res;
-    }
-
-    public static long vanillaAPowerN(int a, int n){
+    public static long binaryExpo(int a, int n){
         long res = 1;
         while(n >  0){
             if((n & 1) == 1){
@@ -76,6 +43,30 @@ public class ImpFunctions {
         }
         return res;
     }
+
+
+    //Modulo division when mod value is prime
+    //(x / y) % mod = [x * y ^ (mod - 2)] % mod
+    static int mod = (int)1e9 + 7;
+    public static int modMul(int x, int y, int m){
+        return (int)((x * 1l * y) % m);
+    }
+
+    //multiplicative modulo inverse under a prime: (x ^ (m-2)) % m
+    public static int mmInvPrime(int x, int m){
+        int y = m - 2;
+        int ans = 1;
+        while(y > 0){
+            if((y & 1) == 1) ans = modMul(ans, x, m);
+            x = modMul(x, x, m);
+            y = y >> 1;
+        }
+        return ans;
+    }
+    public static int divide(int x, int y){
+        return modMul(x, mmInvPrime(y, mod), mod);
+    }
+
 
 
     //Euler totient value
