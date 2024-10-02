@@ -91,6 +91,17 @@ public class ImpFunctions {
         return inverseFactorial;
     }
 
+    //Binomial coefficient w/o mod, nCr
+    //send nCr or nC(n-r) based on whichever is smaller
+    public static int nCr(int n, int r){
+        long ans = 1;
+        for(int i = 0; i < r; i++){
+            ans *= (n - i); //numerator : n * (n - 1) * (n - 2) .... (n - r + 1)
+            ans /= (i + 1); //denominator : 1 * 2 * 3 .... r
+        }
+        return (int) ans;
+    }
+
 
     //Euler totient value
     public static int phi(int n){//can be also done using SPF
