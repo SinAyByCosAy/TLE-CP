@@ -9,10 +9,9 @@ public class DsitributingApples {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int m = sc.nextInt(); //identical items
-        int total = m + n - 1;
         int mod = (int) 1e9 + 7;
         int numerator = 1, denominator = 1;
-        for(int i = 1; i <= total; i++){
+        for(int i = 1; i <= m + n - 1; i++){
             numerator = modMul(numerator, i, mod); //numerator % mod
             if(i == m) denominator = modMul(denominator, mmInvPrime(numerator, mod), mod); //[m!]^-1
             if(i == n - 1) denominator = modMul(denominator, mmInvPrime(numerator, mod), mod); //[m!]^-1 * [(n-1)!]^-1
