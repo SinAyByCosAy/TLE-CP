@@ -68,10 +68,12 @@ public class ImpFunctions {
     }
 
 
-    //Binomial Coefficient under mod
+    //Binomial Coefficient under mod with pre-computation
+
+    static int[] factorial = getFactorial((int)1e6, mod); //pre-computed factorials
+    static int[] inverseFactorial = getInverseFactorial((int)1e6, factorial, mod); //pre-computed inverse factorials
+
     public static int modNCR(int n, int r, int mod){
-        int[] factorial = getFactorial((int)1e6, mod); //pre-computed factorials
-        int[] inverseFactorial = getInverseFactorial((int)1e6, factorial, mod); //pre-computed inverse factorials
         return modMul(modMul(factorial[n], inverseFactorial[r], mod), inverseFactorial[n - r], mod);
     }
     public static int[] getFactorial(int limit, int mod){
