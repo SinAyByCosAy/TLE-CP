@@ -1,4 +1,4 @@
-//https://leetcode.com/problems/majority-element/
+//https://leetcode.com/problems/majority-element-ii/
 package DPBootcamp.Combinatorics;
 
 import java.util.ArrayList;
