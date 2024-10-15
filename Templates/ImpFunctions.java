@@ -5,8 +5,8 @@ import java.util.*;
 public class ImpFunctions {
 
     //Random value generator from [a, b]
-    int rand(int a, int b){
-        return (int) ((Math.random() * (b - a)) + a);
+    public static int rand(int a, int b){
+        return (int) ((Math.random() * (b - a + 1)) + a);
     }
 
     //gcd
