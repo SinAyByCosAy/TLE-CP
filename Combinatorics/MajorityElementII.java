@@ -21,16 +21,13 @@ public class MajorityElementII {
         for(int i = 1; i <= tries; i++){
             int idx = rand(0, n - 1);
             int count = 0;
+            if(result.size() == 1 && result.get(0) == nums[idx]) continue; //don't need to calculate again for already added element
             for(int j = 0; j < n; j++){
                 if(nums[j] == nums[idx])
                     count++;
             }
             if(count > (n / 3)){
-                if(result.size() == 0)
-                    result.add(nums[idx]);
-                else if(result.size() == 1){
-                    if(result.get(0) != nums[idx]) result.add(nums[idx]); //I shouldn't add the same number again
-                }
+                result.add(nums[idx]);
                 if(result.size() == 2) return result;
             }
         }
