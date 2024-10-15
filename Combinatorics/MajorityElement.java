@@ -27,7 +27,7 @@ public class MajorityElement {
         return -1;
     }
     static int rand(int a, int b){
-        return (int) ((Math.random() * (b - a)) + a);
+        return (int) ((Math.random() * (b - a + 1)) + a);
     }
 }
 //TC: O(N)
