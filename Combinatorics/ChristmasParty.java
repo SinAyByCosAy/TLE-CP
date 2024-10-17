@@ -10,7 +10,7 @@ public class ChristmasParty {
         int n = sc.nextInt();
         if(n == 1){
             System.out.println(0);
-            System.exit(1);
+            System.exit(0);
         }
         int fact = 1;
         int mod = (int) 1e9 + 7;
@@ -18,11 +18,12 @@ public class ChristmasParty {
             fact = modMul(fact, i, mod); //calculating n!
         int[] invFactorial = getInvFactorial(n, fact, mod); //pre-computing all inv. factorials
         long combinations = 0; //long because we need to add "mod" due to subtraction
+        int sign = 1;
         for(int i = 2; i <= n; i++){
             int term = modMul(fact, invFactorial[i], mod); // n! / i!
-            int op = (i % 2 == 0) ? 1 : -1; //sign of term
-            term *= op;
+            term *= sign;
             combinations = (combinations + term + mod) % mod; //adding to the total
+            sign *= -1;
         }
         System.out.println(combinations);
     }
