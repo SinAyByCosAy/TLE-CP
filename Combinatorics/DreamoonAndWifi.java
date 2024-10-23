@@ -1,7 +1,6 @@
 //https://codeforces.com/problemset/problem/476/B
 package DPBootcamp.Combinatorics;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DreamoonAndWifi {
@@ -9,39 +8,40 @@ public class DreamoonAndWifi {
         Scanner sc = new Scanner(System.in);
         String s1 = sc.nextLine();
         String s2 = sc.nextLine();
-        int dest = 0;
         int n = s1.length();
+        int reqDist = 0;
         for(int i = 0; i < n; i++){
-            if(s1.charAt(i) == '+')
-                dest += 1;
-            else
-                dest -= 1;
+            if(s1.charAt(i) == '+') reqDist += 1;
+            else reqDist -= 1;
         }
-        ArrayList<Integer> points = new ArrayList<>();
-        points.add(0);
-        int l = 0, r = 0;
+        int y = 0; //# '?'s counter
+        int interpretedDist = 0;
         for(int i = 0; i < n; i++){
             char ch = s2.charAt(i);
-            if(ch == '+'){
-                for(int j = l; j <= r; j++)
-                    points.set(j, points.get(j) + 1);
-            }else if(ch == '-'){
-                for(int j = l; j <= r; j++)
-                    points.set(j, points.get(j) - 1);
-            }else{
-                for(int j = l; j <= r; j++){
-                    points.add(points.get(j) + 1);
-                    points.add(points.get(j) - 1);
-                }
-                l = r + 1;
-                r = points.size() - 1;
-            }
+            if(ch == '+') interpretedDist += 1;
+            else if(ch == '-') interpretedDist -= 1;
+            else y++; //found '?'
         }
-        double total = r - l + 1;
-        int count = 0;
-        for(int i = l; i <= r; i++){
-            if(points.get(i) == dest) count ++;
+        double ans = 0.0;
+        if(y == 0){// no '?'s, hence only one path
+            if(interpretedDist == reqDist) ans = 1.0;
+            else ans = 0.0;
+        }else{
+            int d = Math.abs(reqDist - interpretedDist); //remaining distance
+            int negOnes = (y - d) / 2; // negative ones req
+            int posOnes = negOnes + d; // positive ones req
+            if(d > y || negOnes + posOnes != y) ans = 0.0; //no command combinations lead to correct position
+            else ans = nCr(y, negOnes) / Math.pow(2, y); //we have possible answers
         }
-        System.out.println(count / total);
+        System.out.println(ans);
+    }
+    public static int nCr(int n, int r){
+        long ans = 1;
+        for(int i = 0; i < r; i++){
+            ans *= (n - i);
+            ans /= (i + 1);
+        }
+        return (int) ans;
     }
 }
+//TC: O(N)
