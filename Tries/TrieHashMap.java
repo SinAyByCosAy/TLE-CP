@@ -95,7 +95,7 @@ class TrieHM{
         deleteNodeRecursively(s, head, 0);
         return true;
     }
-    public static boolean deleteNodeRecursively(String s, NodeHM head, int index){
+    private static boolean deleteNodeRecursively(String s, NodeHM head, int index){
         if(index == s.length()){//reached the last child/char
             head.unmarkSpecial(); //need to unmark it
             head.decreaseCount(); //need to decrease it's count
