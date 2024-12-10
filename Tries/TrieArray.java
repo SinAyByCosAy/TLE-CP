@@ -122,7 +122,7 @@ class Trie {
             return nodesList.get(addr).canDeleteNode(); //check if it can be deleted
         }
 
-        if(deleteRecursively(s, nodesList.get(addr).getChildAddr(s.charAt(stringIdx)), stringIdx + 1)){
+        if(deleteChildRecursively(s, nodesList.get(addr).getChildAddr(s.charAt(stringIdx)), stringIdx + 1)){
             nodesList.get(addr).deleteChildNode(s.charAt(stringIdx)); //delete child node
         }
         nodesList.get(addr).decreaseCount(); //decrease count of current node
