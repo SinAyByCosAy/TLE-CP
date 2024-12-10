@@ -112,10 +112,10 @@ class Trie {
     }
     public static boolean delete(String s){
         if(!search(s)) return false;
-        deleteRecursively(s, 0, 0);
+        deleteChildRecursively(s, 0, 0);
         return true;
     }
-    static public boolean deleteRecursively(String s, int addr, int stringIdx){
+    static public boolean deleteChildRecursively(String s, int addr, int stringIdx){
         if(stringIdx == s.length()){ //standing at last node(child)
             nodesList.get(addr).unmarkSpecial(); //unmark it
             nodesList.get(addr).decreaseCount(); //decrease it's count
