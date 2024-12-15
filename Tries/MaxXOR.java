@@ -12,8 +12,11 @@ public class MaxXOR {
         int[] arr = new int[n];
         for(int i = 0; i < n; i++){
             arr[i] = sc.nextInt();
+            BTrie.insert(arr[i]);
         }
-        BTrie.insert(arr);
+        System.out.println(getMaxXor(arr, n));
+    }
+    public static int getMaxXor(int[] arr, int n){
         int maxXor = 0;
         for(int i = 0; i < n; i++){//TC: O(N.32)
             int xor = 0;
@@ -30,7 +33,7 @@ public class MaxXOR {
             }
             maxXor = Math.max(maxXor, xor);
         }
-        System.out.println(maxXor);
+        return maxXor;
     }
 }
 class BNode{
@@ -57,19 +60,17 @@ class BNode{
 }
 class BTrie{
     static ArrayList<BNode> nodesList = new ArrayList<>(Arrays.asList(new BNode()));
-    public static void insert(int[] arr){
-        for(int x : arr){
-            int idx = 0;
-            for (int j = 31; j >= 0; j--) {//iterating from MSB side
-                int bit = (x & (1 << j)) > 0 ? 1 : 0; //checking if current bit is set or not
-                if (!nodesList.get(idx).contains(bit)) {//if current bit is not inserted
-                    BNode child = new BNode();
-                    nodesList.get(idx).insertChild(bit, nodesList.size());
-                    nodesList.add(child);
-                }
-                idx = nodesList.get(idx).getChildAddr(bit);//move to the next bit
+    public static void insert(int x){
+        int idx = 0;
+        for (int j = 31; j >= 0; j--) {//iterating from MSB side
+            int bit = (x & (1 << j)) > 0 ? 1 : 0; //checking if current bit is set or not
+            if (!nodesList.get(idx).contains(bit)) {//if current bit is not inserted
+                BNode child = new BNode();
+                nodesList.get(idx).insertChild(bit, nodesList.size());
+                nodesList.add(child);
             }
-            nodesList.get(idx).markSpecial();
+            idx = nodesList.get(idx).getChildAddr(bit);//move to the next bit
         }
+        nodesList.get(idx).markSpecial();
     }
 }
