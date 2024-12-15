@@ -37,25 +37,25 @@ public class MaxXOR {
     }
 }
 class BNode{
-    int[] childBits;
+    int[] childRef;
     boolean isSpecial;
     BNode(){
-        childBits = new int[2];
-        childBits[0] = childBits[1] = -1;
+        childRef = new int[2];
+        childRef[0] = childRef[1] = -1;
         isSpecial = false;//all numbers reach the end of 32 sized path, so this is not needed
     }
     void markSpecial(){
         isSpecial = true;
     }
     boolean contains(int bit){
-        if(childBits[bit] == -1) return false;
+        if(childRef[bit] == -1) return false;
         return true;
     }
     void insertChild(int bit, int addr){
-        childBits[bit] = addr;
+        childRef[bit] = addr;
     }
     int getChildAddr(int bit){
-        return childBits[bit];
+        return childRef[bit];
     }
 }
 class BTrie{
