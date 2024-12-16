@@ -137,3 +137,49 @@ public class ImpFunctions {
         return phiValues;
     }
 }
+
+//Binary Trie
+class BNode{
+    int[] childRef;
+    BNode(){
+        childRef = new int[2];
+        childRef[0] = childRef[1] = -1;
+    }
+    boolean contains(int bit){
+        if(childRef[bit] == -1) return false;
+        return true;
+    }
+    void insertChild(int bit, int addr){
+        childRef[bit] = addr;
+    }
+    int getChildAddr(int bit){
+        return childRef[bit];
+    }
+}
+class BTrie{
+    static ArrayList<BNode> nodesList = new ArrayList<>(Arrays.asList(new BNode()));
+    public static void insert(int x){
+        int idx = 0;
+        for (int j = 31; j >= 0; j--) {//iterating from MSB side
+            int bit = (x & (1 << j)) > 0 ? 1 : 0; //checking if current bit is set or not
+            if (!nodesList.get(idx).contains(bit)) {//if current bit is not inserted
+                BNode child = new BNode();
+                nodesList.get(idx).insertChild(bit, nodesList.size());
+                nodesList.add(child);
+            }
+            idx = nodesList.get(idx).getChildAddr(bit);//move to the next bit
+        }
+    }
+    public static int getMaxXor(int x){
+        int res = 0;
+        int idx = 0;
+        for(int i = 31; i >= 0; i--){
+            int bit = (x & (1 << i)) > 0 ? 1 : 0;
+            int reqBit = bit ^ 1;
+            if(!nodesList.get(idx).contains(reqBit)) reqBit = bit;
+            if(reqBit != bit) res |= (1 << i);
+            idx = nodesList.get(idx).getChildAddr(reqBit);
+        }
+        return res;
+    }
+}
