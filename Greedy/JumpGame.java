@@ -1,5 +1,5 @@
 //https://leetcode.com/problems/jump-game/
-package DPBootcamp.Combinatorics;
+package DPBootcamp.Greedy;
 
 import java.util.Scanner;
 

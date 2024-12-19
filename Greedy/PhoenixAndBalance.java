@@ -1,5 +1,5 @@
 //https://codeforces.com/problemset/problem/1348/A
-package DPBootcamp.Combinatorics;
+package DPBootcamp.Greedy;
 
 import java.util.Scanner;
 

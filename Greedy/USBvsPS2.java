@@ -1,5 +1,5 @@
 //https://codeforces.com/contest/762/problem/B
-package DPBootcamp.Combinatorics;
+package DPBootcamp.Greedy;
 
 import java.util.ArrayList;
 import java.util.Collections;
