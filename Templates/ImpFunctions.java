@@ -138,7 +138,72 @@ public class ImpFunctions {
     }
 }
 
-//Character trie
+//STRING HASHING
+
+
+//  Hash a = new Hash(s1);
+//  Hash b = new Hash(s2);
+//  Hashes s1Hash = a.get(l1, r1); ---> requires (l,r) index for string hash, access via s1Hash.hash1, s1Hash.hash2
+//  Hashes s2Hash = b.get(l2, r2);
+
+//First calculates Hash of string in O(N) and then we can fetch hash of any substring in O(1)
+class Hash{//0-based indexing
+    int base1 = 7919;
+    int base2 = 4793;
+    int mod = (int) 1e9 + 7;
+
+    ArrayList<Hashes> hashes = new ArrayList<>();//maintaining hashes of prefixes ending at every index
+    ArrayList<Pows> pows = new ArrayList<>(); //maintaining powers to fetch them while calculating substring hashes
+
+    Hash(String s){
+        int hash1 = 0, hash2 = 0; //starting points
+        int pow1 = 1, pow2 = 1; //power 0
+        for(int i = 0; i < s.length(); i++){
+            char ch = s.charAt(i);
+            hash1 = (modMul(hash1, base1) + (ch - 'a')) % mod;
+            hash2 = (modMul(hash2, base2) + (ch - 'a')) % mod;
+            hashes.add(new Hashes(hash1, hash2));
+
+            pows.add(new Pows(pow1, pow2));
+            pow1 = modMul(pow1, base1);
+            pow2 = modMul(pow2, base2);
+        }
+    }
+    Hashes get(int l, int r){
+        //l, r in 0-based indexing
+        long val1, val2;
+        if(l == 0) {
+            val1 = hashes.get(r).hash1;
+            val2 = hashes.get(r).hash2;
+        }else{
+            val1 = (hashes.get(r).hash1 - modMul(pows.get(r - l + 1).pow1, hashes.get(l - 1).hash1) + mod) % mod;
+            val2 = (hashes.get(r).hash2 - modMul(pows.get(r - l + 1).pow2, hashes.get(l - 1).hash2) + mod) % mod;
+        }
+        return new Hashes((int) val1, (int) val2);
+    }
+    int modMul(int x, int y){
+        return (int)((x * 1l * y) % mod);
+    }
+}
+class Hashes{
+    int hash1, hash2;
+    Hashes(int hash1, int hash2){
+        this.hash1 = hash1;
+        this.hash2 = hash2;
+    }
+}
+class Pows{
+    int pow1, pow2;
+    Pows(int pow1, int pow2){
+        this.pow1 = pow1;
+        this.pow2 = pow2;
+    }
+}
+
+
+
+
+//CHARACTER TRIE
 class Node{
     int[] childRef;
     boolean isSpecial;
@@ -245,7 +310,7 @@ class Trie {
 
 
 
-//Binary Trie
+//BINARY TRIE
 class BNode{
     int[] childRef;
     BNode(){
