@@ -1,10 +1,10 @@
+//https://cses.fi/problemset/task/1753
 package DPBootcamp.StringHashing;
 
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
 public class StringMatching {
@@ -28,16 +28,20 @@ public class StringMatching {
     }
     public static void main(String[] args){
         FastReader fr = new FastReader();
-        PrintWriter out = new PrintWriter(System.out);
         String s = fr.nextLine();
-        int n = s.length();
         String pattern = fr.nextLine();
+        int n = s.length();
         int m = pattern.length();
-        Hashes[] hashes = new Hashes[n + 1];
-        hashes[0] = new Hashes(0, 0);
-        Bases[] bases = new Bases[n + 1];
-        bases[0] = new Bases(1, 1);
-        StringHashing.computeHashes(s, hashes, bases);
 
+        Hash a = new Hash(s); //from StringHashingTemplate
+        Hash b = new Hash(pattern);
+        Hashes patternHash = b.get(0, m - 1);
+        int count = 0;
+        for(int i = 0; i < n - (m - 1); i++){
+            Hashes sub = a.get(i, i + (m - 1));
+            if(sub.hash1 == patternHash.hash1 && sub.hash2 == patternHash.hash2) count++;
+        }
+        System.out.println(count);
     }
 }
+//TC:O(N + M)
