@@ -33,7 +33,7 @@ public class StringMatching {
         int n = s.length();
         int m = pattern.length();
 
-        Hash a = new Hash(s); //from StringHashingTemplate
+        Hash a = new Hash(s); //pre-compute hashes, from StringHashingTemplate
         Hash b = new Hash(pattern);
         Hashes patternHash = b.get(0, m - 1);
         int count = 0;
