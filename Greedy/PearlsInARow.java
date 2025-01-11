@@ -50,13 +50,13 @@ public class PearlsInARow {
                 result.add(new Segment(l + 1, i + 1)); //1 based indexing
                 l = i + 1;
                 hs.clear(); //ready for new segment
-            }else if(i == n - 1){//didn't find a duplicate in the current segment till the end
-                if(result.size() != 0) result.get(result.size() - 1).r = n; //modify previous segment's right end
             }else hs.add(ele);
         }
         if(result.size() == 0) out.println(-1);
         else{
-            out.println(result.size());
+            int k = result.size();
+            out.println(k);
+            result.get(k - 1).r = n;
             for(Segment pair : result){
                 out.println(pair.l + " " + pair.r);
             }
