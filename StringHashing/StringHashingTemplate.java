@@ -41,8 +41,8 @@ class Hash{//0-based indexing
         int pow1 = 1, pow2 = 1; //power 0
         for(int i = 0; i < s.length(); i++){
             char ch = s.charAt(i);
-            hash1 = (modMul(hash1, base1) + (ch - 'a')) % mod;
-            hash2 = (modMul(hash2, base2) + (ch - 'a')) % mod;
+            hash1 = (modMul(hash1, base1) + (ch - 'a' + 1)) % mod;
+            hash2 = (modMul(hash2, base2) + (ch - 'a' + 1)) % mod;
             hashes.add(new Hashes(hash1, hash2));
 
             pows.add(new Pows(pow1, pow2));
