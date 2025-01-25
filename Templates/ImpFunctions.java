@@ -261,9 +261,8 @@ class Trie {
         for(int i = 0; i < s.length(); i++){
             char ch = s.charAt(i);
             if(!nodesList.get(idx).contains(ch)) { //child is not present
-                Node child = new Node(); //new node
                 nodesList.get(idx).insertChild(ch, nodesList.size()); //insert it's position in current node/parent
-                nodesList.add(child); //add in global list
+                nodesList.add(new Node()); //add in global list
             }
             idx = nodesList.get(idx).getChildAddr(ch); //move to child node
             nodesList.get(idx).increaseCount(); //increase count
@@ -335,9 +334,8 @@ class BTrie{
         for (int j = 31; j >= 0; j--) {//iterating from MSB side
             int bit = (x & (1 << j)) > 0 ? 1 : 0; //checking if current bit is set or not
             if (!nodesList.get(idx).contains(bit)) {//if current bit is not inserted
-                BNode child = new BNode();
                 nodesList.get(idx).insertChild(bit, nodesList.size());
-                nodesList.add(child);
+                nodesList.add(new BNode());
             }
             idx = nodesList.get(idx).getChildAddr(bit);//move to the next bit
         }
