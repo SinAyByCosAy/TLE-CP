@@ -1,5 +1,7 @@
+//https://codeforces.com/contest/2051/problem/C
 package DPBootcamp.Contests.CF995Div3;
 
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class ProbC {
@@ -11,22 +13,19 @@ public class ProbC {
             int m = sc.nextInt();
             int k = sc.nextInt();
             int[] q = new int[m];
-            int[] practice = new int[m];
+            HashSet<Integer> hs = new HashSet<>();
             for(int i = 0; i < m; i++)
                 q[i] = sc.nextInt();
-            int unknown = -1;
-            for(int i = 0; i < k; i++) {
-                practice[i] = sc.nextInt();
-                if(unknown == -1 && practice[i] != i + 1) unknown = i + 1;
-            }
+            for(int i = 0; i < k; i++)
+                hs.add(sc.nextInt());
             if (k < n - 1) {
                 for (int i = 1; i <= m; i++) System.out.print(0);
             } else if (k == n)
                 for (int i = 1; i <= m; i++) System.out.print(1);
             else {
                 for(int i = 0; i < m; i++){
-                    if(q[i] != unknown) System.out.print(0);
-                    else System.out.print(1);
+                    if(!hs.contains(q[i])) System.out.print(1);
+                    else System.out.print(0);
                 }
             }
             System.out.println();
