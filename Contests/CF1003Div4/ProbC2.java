@@ -1,3 +1,4 @@
+//https://codeforces.com/contest/2065/problem/C2
 package DPBootcamp.Contests.CF1003Div4;
 
 import java.io.BufferedReader;
@@ -7,7 +8,7 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class ProbD {
+public class ProbC2 {
     static class FastReader {
         BufferedReader br;
         StringTokenizer st;
@@ -56,38 +57,43 @@ public class ProbD {
         while(t-- > 0){
             int n = fr.nextInt();
             int m = fr.nextInt();
-            Details[] detail = new Details[n];
-            int[][] arr = new int[n][m];
+            int[] a = new int[n];
+            Integer[] b = new Integer[m];
             for(int i = 0; i < n; i++){
-                long w = n * m;
-                long sum = 0;
-                for(int j = 0; j < m; j++) {
-                    arr[i][j] = fr.nextInt();
-                    sum += arr[i][j] * w;
-                    w--;
-                }
-                detail[i] = new Details(sum, i);
+                a[i] = fr.nextInt();
             }
-            Arrays.sort(detail, (a, b) -> Long.compare(a.sum, b.sum));
-            long sum = 0;
-            long weight = n * m;
-            for(int i = n - 1; i >= 0; i--){
-                int row = detail[i].idx;
-                for(int j = 0; j < m; j++){
-                    sum += arr[row][j] * weight;
-                    weight --;
+            for(int i = 0; i < m; i++){
+                b[i] = fr.nextInt();
+            }
+            Arrays.sort(b);
+            int prev = Integer.MIN_VALUE;
+            boolean pos = true;
+            for(int i = 0; i < n; i++){
+                int op = getLowerBound(b, m, prev + a[i]);
+                if(a[i] >= prev){
+                    prev = Math.min(a[i], op - a[i]);
+                }else if(a[i] < prev && op != Integer.MAX_VALUE) prev = op - a[i];
+                else{
+                    pos = false;
+                    break;
                 }
             }
-            out.println(sum);
+            if(pos) out.println("YES");
+            else out.println("NO");
         }
         out.flush();
     }
-}
-class Details{
-    long sum;
-    int idx;
-    Details(long sum, int idx){
-        this.sum = sum;
-        this.idx = idx;
+    public static int getLowerBound(Integer[] b, int m, int x){
+        int start = 0, end = m - 1;
+        int ans = Integer.MAX_VALUE;
+        while(start <= end){
+            int mid = (start + end) / 2;
+            if(b[mid] >= x){
+                ans = b[mid];
+                end = mid - 1;
+            }else start = mid + 1;
+        }
+        return ans;
     }
 }
+
