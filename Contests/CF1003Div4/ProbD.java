@@ -1,3 +1,4 @@
+//https://codeforces.com/contest/2065/problem/D
 package DPBootcamp.Contests.CF1003Div4;
 
 import java.io.BufferedReader;
@@ -59,12 +60,10 @@ public class ProbD {
             Details[] detail = new Details[n];
             int[][] arr = new int[n][m];
             for(int i = 0; i < n; i++){
-                long w = n * m;
                 long sum = 0;
                 for(int j = 0; j < m; j++) {
                     arr[i][j] = fr.nextInt();
-                    sum += arr[i][j] * w;
-                    w--;
+                    sum += arr[i][j];
                 }
                 detail[i] = new Details(sum, i);
             }
