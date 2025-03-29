@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
-public class ProbA {
+public class ProbD {
     static class FastReader {
         BufferedReader br;
         StringTokenizer st;
