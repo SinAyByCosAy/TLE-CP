@@ -45,7 +45,7 @@ public class BookShop {
         for(int[] row : dp) Arrays.fill(row, -1);
         for(int i = 0; i <= x; i++) dp[n][i] = 0;
         out.println(getMaxPagesRecursive(pages, prices, dp, n, 0, x));
-        out.println(getMaxPagesIterative(pages, prices, dp, n, x));
+        out.println(getMaxPagesIterative(pages, prices, n, x));
         out.flush();
     }
     public static int getMaxPagesRecursive(int[] pages, int[] prices, int[][] dp, int n, int i, int k){
@@ -58,13 +58,19 @@ public class BookShop {
         return dp[i][k];
     }
 
-    public static int getMaxPagesIterative(int[] pages, int[] prices, int[][] dp, int n, int x){
+    public static int getMaxPagesIterative(int[] pages, int[] prices, int n, int x){
+        int[][] dp = new int[2][x + 1];//need current and next row only
+        for(int i = 0; i <= x; i++) dp[0][i] = 0;
+        int flag = 1;//used to switch between rows
         for(int i = n - 1; i >= 0; i--){
             for(int j = 0; j <= x; j++){
-                dp[i][j] = dp[i + 1][j];
-                if(j - prices[i] >= 0) dp[i][j] = Math.max(dp[i][j], pages[i] + dp[i + 1][j - prices[i]]);
+                dp[flag][j] = dp[flag ^ 1][j];
+                if(j - prices[i] >= 0) dp[flag][j] = Math.max(dp[flag][j], pages[i] + dp[flag ^ 1][j - prices[i]]);
             }
+            flag ^= 1; //row switching
         }
-        return dp[0][x];
+        return dp[flag ^ 1][x]; //bit will get flipped one last time in the end and point to the other row
     }
 }
+//TC: O(N.X)
+//SC: O(X)
