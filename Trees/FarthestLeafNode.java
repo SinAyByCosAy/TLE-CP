@@ -21,7 +21,7 @@ public class FarthestLeafNode {
         for(int i = 1; i <= n; i++) System.out.println("Node: "+i+" has farthest node: "+farthest[i].node+" at dist: "+farthest[i].dist);
     }
     public static void calculateFarthestNodes(int node, List<Integer>[] adj, Pair[] farthest){
-        farthest[node] = new Pair();
+        farthest[node] = new Pair(node, 0);
         for(int ele : adj[node]){//go to children and get their farthest nodes
             calculateFarthestNodes(ele, adj, farthest);
             if(farthest[node].dist < farthest[ele].dist + 1){
@@ -29,16 +29,12 @@ public class FarthestLeafNode {
                 farthest[node].node = farthest[ele].node;
             }
         }
-        if(farthest[node].dist == -1){//leaf node
-            farthest[node].dist = 0;
-            farthest[node].node = node;
-        }
     }
 }
 class Pair{
     int node, dist;
-    Pair(){
-        node = -1;
-        dist = -1;
+    Pair(int node, int dist ){
+        this.node = node;
+        this.dist = dist;
     }
 }
