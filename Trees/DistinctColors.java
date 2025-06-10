@@ -55,6 +55,7 @@ public class DistinctColors {
         out.flush();
     }
     //every node gets merged log N times to reach the top node, and every insert in set takes logN time
+    //we just need to make sure we always merge the smallest set in the larger set
     public static void dfs(List<Integer>[] adj, HashSet<Integer>[] stColors, int node, int parent, int[] stSize){
         for(int child : adj[node]){
             if(child != parent){
@@ -66,7 +67,7 @@ public class DistinctColors {
         stSize[node] = stColors[node].size();
     }
     public static void swap(HashSet<Integer>[] hs, int a, int b){
-        HashSet<Integer> t = hs[a];
+        HashSet<Integer> t = hs[a]; //just picking set's reference, not the set itself
         hs[a] = hs[b];
         hs[b] = t;
     }
