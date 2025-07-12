@@ -380,6 +380,7 @@ class DSU{
             count--;//number of connected components decreased by 1 after successful merge
         }
     }
+    public static boolean isSameSet(int x, int y){ return findSet(x) == findSet(y); }
     public static int getCompCount(){ return count; }
 }
 //TC per query: O(IAF(N)), IAF - Inverse Ackerman function
