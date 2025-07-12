@@ -15,17 +15,19 @@ public class DisjointSetUnion {
             int x = sc.nextInt();
             int y = sc.nextInt();
             if(type == 1) DSU2.unionSet(x, y);
-            if(type == 2) System.out.println((DSU2.findSet(x) == DSU2.findSet(y)) ? "YES" : "NO");
+            if(type == 2) System.out.println((DSU2.isSameSet(x, y)) ? "YES" : "NO");
         }
     }
 }
 class DSU2{
     private static int[] parent, rank;
+    private static int count;
     public static void init(int n){
         parent = new int[n + 1];
         rank = new int[n + 1];
         Arrays.fill(rank, 0);
         for(int i = 1; i <= n; i++) parent[i] = i;//self parent
+        count = n;
     }
     public static int findSet(int x){//we are looking for root
         if(parent[x] == x) return x; //self parent means node is root
@@ -38,7 +40,10 @@ class DSU2{
             if(rank[a] < rank[b]){ int t = a; a = b; b = t; }//we make sure to merge b -> a
             parent[b] = a; //merged
             if(rank[a] == rank[b]) rank[a]++; //if rank is same, we need to increase
+            count--;
         }
     }
+    public static boolean isSameSet(int x, int y){ return findSet(x) == findSet(y); }
+    public static int getCompCount(){ return count; }
 }
 //TC per query: O(IAF(N)), IAF - Inverse Ackerman function
