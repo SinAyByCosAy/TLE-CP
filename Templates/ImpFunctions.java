@@ -353,3 +353,29 @@ class BTrie{
         return res;
     }
 }
+
+
+//Disjoint Set Union
+class DSU{
+    private static int[] parent, rank;
+    public static void init(int n){
+        parent = new int[n + 1];
+        rank = new int[n + 1];
+        Arrays.fill(rank, 0);
+        for(int i = 1; i <= n; i++) parent[i] = i;//self parent
+    }
+    public static int findSet(int x){//we are looking for root
+        if(parent[x] == x) return x; //self parent means node is root
+        return parent[x] = findSet(parent[x]); //otherwise we get the root from parent and memoize
+    }
+    public static void unionSet(int x, int y){
+        int a = findSet(x); //find root
+        int b = findSet(y);
+        if(a != b){//edge doesn't exist, part of different components
+            if(rank[a] < rank[b]){ int t = a; a = b; b = t; }//we make sure to merge b -> a
+            parent[b] = a; //merged
+            if(rank[a] == rank[b]) rank[a]++; //if rank is same, we need to increase
+        }
+    }
+}
+//TC per query: O(IAF(N)), IAF - Inverse Ackerman function
