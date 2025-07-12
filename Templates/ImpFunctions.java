@@ -358,7 +358,9 @@ class BTrie{
 //Disjoint Set Union
 class DSU{
     private static int[] parent, rank;
+    private static int count;
     public static void init(int n){
+        count = n;
         parent = new int[n + 1];
         rank = new int[n + 1];
         Arrays.fill(rank, 0);
@@ -375,7 +377,9 @@ class DSU{
             if(rank[a] < rank[b]){ int t = a; a = b; b = t; }//we make sure to merge b -> a
             parent[b] = a; //merged
             if(rank[a] == rank[b]) rank[a]++; //if rank is same, we need to increase
+            count--;//number of connected components decreased by 1 after successful merge
         }
     }
+    public static int getCompCount(){ return count; }
 }
 //TC per query: O(IAF(N)), IAF - Inverse Ackerman function
