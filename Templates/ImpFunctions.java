@@ -381,6 +381,6 @@ class DSU{
         }
     }
     public static boolean isSameSet(int x, int y){ return findSet(x) == findSet(y); }
-    public static int getCompCount(){ return count; }
+    public static int getComponents(){ return count; }
 }
 //TC per query: O(IAF(N)), IAF - Inverse Ackerman function
