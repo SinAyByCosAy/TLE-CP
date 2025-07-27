@@ -21,17 +21,17 @@ public class TopoSortKahns {
         for(int i = 1; i <= n; i++)
             if(inDeg[i] == 0) pq.add(i); //nodes with in-deg 0 will go in first
 
-        int idx = 0;
-        int[] res = new int[n + 1];
+        List<Integer> res = new ArrayList<>();
         while(!pq.isEmpty()){
             int top = pq.poll();//all the nodes linking to it are processed, so current node can be placed
-            res[idx++] = top;
+            res.add(top);
             for(int neighbor : adj[top]){
                 inDeg[neighbor]--;
                 if(inDeg[neighbor] == 0) pq.add(neighbor);//node ready to be processed
             }
         }
-        System.out.println(Arrays.toString(res));
+        if(res.size() != n) System.out.println("Cycle exists");
+        else System.out.println(res);
     }
 }
 //TC: O(N + M)
