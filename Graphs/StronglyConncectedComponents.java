@@ -27,11 +27,11 @@ public class StronglyConncectedComponents {
         List<Integer>[] newEdges = new ArrayList[n + 1];
         for(int i = 1; i <= n; i++) newEdges[i] = new ArrayList<>();
         for(int i = 1; i <= n; i++){//reversing the edges
+            visited[i] = false;//to use later
             for(int neighbor : adj[i]) newEdges[neighbor].add(i);
         }
 
         int countSCC = 0;
-        visited = new boolean[n + 1];
         for(int i = 0; i < n; i++){//traversing on topo sorted order
             if(!visited[order.get(i)]){
                 countSCC++;
