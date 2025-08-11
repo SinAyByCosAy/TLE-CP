@@ -7,7 +7,7 @@ public class SegmentTree {
         Scanner sc = new Scanner(System.in);
         int n = 8;
         int[] arr = {10, 20, 5, 4, 3, 2, 7, 11};
-        int[] sgt = new int[2 * n];
+        int[] sgt = new int[4 * n];
         buildTree(1, 0, n - 1, arr, sgt);
     }
     //idx: current segment index
