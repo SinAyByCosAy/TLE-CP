@@ -1,4 +1,4 @@
-package DPBootcamp.Graphs;
+package DPBootcamp.SegmentTrees;
 
 import java.util.Scanner;
 
