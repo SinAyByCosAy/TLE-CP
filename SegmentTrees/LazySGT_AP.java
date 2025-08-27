@@ -14,7 +14,7 @@ public class LazySGT_AP {
         int[] sgt = new int[4 * n];
         Pair[] lsgt = new Pair[4 * n];
         for(int i = 0; i < 4 * n; i++) lsgt[i] = new Pair(0, 0);
-        buildTree(1, 0, n - 1, arr, sgt, lsgt);
+        buildTree(1, 0, n - 1, arr, sgt);
         for(int i = 1; i <= q; i++){
             int type = sc.nextInt();
             int l = sc.nextInt();
@@ -23,14 +23,14 @@ public class LazySGT_AP {
             else System.out.println(query(1, 0, n - 1, l, r, sgt, lsgt));
         }
     }
-    private static void buildTree(int idx, int start, int end, int[] arr, int[] sgt, Pair[] lsgt){
+    private static void buildTree(int idx, int start, int end, int[] arr, int[] sgt){
         if(start == end) {
             sgt[idx] = arr[start];
             return;
         }
         int mid = (start + end) / 2;
-        buildTree(2 * idx, start, mid, arr, sgt, lsgt);
-        buildTree(2 * idx + 1, mid + 1, end, arr, sgt, lsgt);
+        buildTree(2 * idx, start, mid, arr, sgt);
+        buildTree(2 * idx + 1, mid + 1, end, arr, sgt);
         sgt[idx] = sgt[2 * idx] + sgt[2 * idx + 1];
     }
     //to find starting points of AP for any segment we can use the nth term formula
@@ -40,7 +40,7 @@ public class LazySGT_AP {
         if(start >= l && end <= r){
             int d = 1;
             int a = 1;
-            a += start - l;
+            a += (start - l) * d;
             int n = end - start + 1;
             sgt[idx] += (n * (2 * a + (n - 1) * d)) / 2;
             lsgt[idx].a += a;
