@@ -13,7 +13,6 @@ public class SparseTableSum {
 
         int log = (int) (Math.log(n) / Math.log(2));
         int[][] st = new int[log + 1][n];
-        for(int[] row : st) Arrays.fill(row, 0);
         for(int i = 0; i < n; i++) st[0][i] = arr[i];
 
         for(int i = 1; i <= log; i++){
