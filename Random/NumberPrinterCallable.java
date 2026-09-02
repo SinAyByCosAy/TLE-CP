@@ -10,6 +10,7 @@ public class NumberPrinterCallable implements Callable<String> {
     @Override
     public String call() throws Exception{
         String s = num + " : " + Thread.currentThread().getName();
+        System.out.println("Thread: " + s);
         return s;
     }
 }
