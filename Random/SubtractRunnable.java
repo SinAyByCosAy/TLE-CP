@@ -13,9 +13,12 @@ public class SubtractRunnable implements Runnable{
     public void run(){
         for(int i = 0; i <= 10000; i++) {
             lock.lock();
-            System.out.println(Thread.currentThread().getName() + " " + "Count="+cs.var);
-            cs.var -= i;
-            lock.unlock();
+            try {
+                System.out.println(Thread.currentThread().getName() + " " + "Count=" + cs.var);
+                cs.var -= i;
+            }finally {
+                lock.unlock();
+            }
         }
     }
 }
