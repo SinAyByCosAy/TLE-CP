@@ -2,13 +2,16 @@ package DPBootcamp.Random.ProducerConsumer;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.concurrent.Semaphore;
 
 public class Client {
     public static void main(String args[]){
         Queue<Object> shelf = new LinkedList<>();
         int size = 5;
-        Producer producer = new Producer(shelf, size);
-        Consumer consumer = new Consumer(shelf, size);
+        Semaphore ps = new Semaphore(size);
+        Semaphore cs = new Semaphore(0);
+        Producer producer = new Producer(shelf, size, ps, cs);
+        Consumer consumer = new Consumer(shelf, size, ps, cs);
         Thread p1 = new Thread(producer);
         Thread p2 = new Thread(producer);
         Thread p3 = new Thread(producer);
