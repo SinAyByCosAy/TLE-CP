@@ -27,7 +27,7 @@ public class MultithreadedServer {
             String msg = new String(buffer, 0, bytesRead);
             msg += " bulla!";
             out.write(msg.getBytes());
-
+            System.out.println("Received: " + msg);
             socket.close();
         }catch (IOException e){
             e.printStackTrace();
